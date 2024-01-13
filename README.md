@@ -34,3 +34,26 @@ kafka-consumer-groups --bootstrap-server broker:29092 --describe --group <group_
 kafka-consumer-groups --bootstrap-server broker:29092 --group <group_name> --reset-offset --to-earliest --execute --all-topics
 ```
 
+## Producer Acks
+```
+- acks = 0 => Producer won't wait for acknowledgment(possible data loss)
+- acks = 1 => Producer will wait for leader acknowledgment(limited data loss)
+- acks = all => leader + replica acknowledgment(no data loss)
+```
+## acks=all & min.insync.replicas
+```
+- min.insync.replicas = 1 => only the broker leader needs to successfully ack
+- min.insync.replicas = 2 => at least the broker leader and one replica need to ack
+
+```
+
+## Since kafka 3.0 the producer is "safe" by default
+```
+acks = all(-1)
+enable.idempotence = true
+```
+
+## Message compression at the producer level
+```
+compression.type can be none(default), gzip, lz4, snappy, zstd(kafka 2.1)
+```
