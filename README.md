@@ -34,7 +34,3 @@ kafka-consumer-groups --bootstrap-server broker:29092 --describe --group <group_
 kafka-consumer-groups --bootstrap-server broker:29092 --group <group_name> --reset-offset --to-earliest --execute --all-topics
 ```
 
-## kafka-ui
-```bash
-docker run -it -p 8080:8080 -e DYNAMIC_CONFIG_ENABLED=true --network=kafka-basic_net_c provectuslabs/kafka-ui
-```
