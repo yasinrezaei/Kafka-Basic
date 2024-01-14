@@ -2,7 +2,6 @@ package org.example;
 
 import com.launchdarkly.eventsource.EventHandler;
 import com.launchdarkly.eventsource.EventSource;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -10,7 +9,7 @@ import java.net.URI;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class KafkaProducer {
     public static void main(String[] args) throws InterruptedException {
         String bootstrapServers = "localhost:29092";
         
@@ -35,7 +34,7 @@ public class Main {
 
 
         //create the producer
-        KafkaProducer<String,String> producer =  new KafkaProducer<>(properties);
+        org.apache.kafka.clients.producer.KafkaProducer<String,String> producer =  new org.apache.kafka.clients.producer.KafkaProducer<>(properties);
 
         String topic = "wikimedia_recent_change";
         EventHandler eventHandler = new WikimediaChangeHandler(producer,topic);
