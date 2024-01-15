@@ -95,3 +95,22 @@ max.block.ms => the producer has filled up its buffer, .send() will block,the br
 - At most once => if the processing goes wrong, the message will be lost(it won't be read again)
 - At least once => offsets are commited after the message is processed(make sure your processing is idempotent!)
 ```
+
+## Schema Registery
+```json
+{
+	"type": "record",
+	"name": "myrecord",
+	"fields": [
+		{
+			"name": "f1",
+			"type": "string"
+		},
+		{
+			"name": "f3",
+			"type": "int",
+			"default": 0
+		}
+	]
+}
+```
