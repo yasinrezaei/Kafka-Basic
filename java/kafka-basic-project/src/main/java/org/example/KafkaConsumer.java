@@ -23,6 +23,9 @@ public class KafkaConsumer {
             for(ConsumerRecord<String,String> record:records){
                 System.out.printf("record :%s",record);
             }
+            // commit offset
+            consumer.commitSync();
+
         }
     }
     private static org.apache.kafka.clients.consumer.KafkaConsumer<String,String> createKafkaConsumer(){
@@ -37,6 +40,10 @@ public class KafkaConsumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG,groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"latest");
+        // properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
+        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,"false");
+        
+
 
         //create consumer
         return new org.apache.kafka.clients.consumer.KafkaConsumer<>(properties);
